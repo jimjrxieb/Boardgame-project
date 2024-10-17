@@ -120,7 +120,11 @@
 	 <distributionManagement>
         <repository>
             <id>maven-releases</id>
+<<<<<<< HEAD
             <url>http://54.235.237.123:8081/repository/maven-releases/</url>
+=======
+            <url>http://54.235.237.123:8081//repository/maven-releases/</url>
+>>>>>>> c3d1f03b82d127d9a3f18112dbdbc5945ae2a4b7
         </repository>
         <snapshotRepository>
             <id>maven-snapshots</id>
