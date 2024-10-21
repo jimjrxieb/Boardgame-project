@@ -7,6 +7,7 @@ pipeline {
     
     environment {
         SCANNER_HOME= tool 'sonar-scanner'
+	GG_API_KEY = credentials('gitguard_cred')
     }
 
     stages {
@@ -41,7 +42,13 @@ pipeline {
                 sh "trivy fs --format table -o fs-report.html ."
             }
         }
-        
+
+	stage('ggshield Scan') {
+            steps {
+                sh "ggshield scan repo . --api-key=${env.GG_API_KEY}"
+            }
+        }
+	    
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('sonar-server'){
