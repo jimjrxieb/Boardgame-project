@@ -1,3 +1,5 @@
+# THIS IS MY JENKINS PIPELINE 
+# CREDS/TOKENS NEEDED: GIT-TOKEN | GITGUARD-CRED | DOCKER-CRED | KUBE8-CRED | SONARQUBE-TOKEN | 
 pipeline {
     agent any
     tools {
@@ -7,50 +9,65 @@ pipeline {
     
     environment {
         SCANNER_HOME= tool 'sonar-scanner'
+	GG_API_KEY = credentials('gitguard_cred')
     }
-
+    
     stages {
+	# This stage checks out the main branch of your Git repository.
         stage('Git Checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/jimjrxieb/DSO_Boardgame.git'
             }
         }
         
-        
+        # This stage compiles the Maven project.
         stage('Compile') {
             steps {
                 sh 'mvn compile'
             }
         }
-       
+        
+	# This stage performs an OWASP Dependency Check to identify vulnerabilities in project dependencies and publishes 	  the report.
         stage('OWASP SCAN') {
             steps {
                 dependencyCheck additionalArguments: '', odcInstallation: 'DP-check'
                 dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
             }
         }
-    
+
+	# This stage runs the Maven tests.
         stage('Test') {
             steps {
                 sh 'mvn test'
             }
         }
-        
+
+	# This stage uses Trivy to scan the file system for vulnerabilities and outputs the report in table format.
         stage('Trivy FS Scan') {
             steps {
                 sh "trivy fs --format table -o fs-report.html ."
             }
         }
-        
+
+	# This stage uses GitGuard Shield (ggshield) to scan the repository for secrets and sensitive information using 	  the GitGuard API key.
+        stage('ggshield Scan') {
+            steps {
+                sh "ggshield scan repo . --api-key=${env.GG_API_KEY}"
+            }
+        }
+
+	# This stage performs a SonarQube analysis on the project, scanning for code quality issues.
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('sonar-server'){
-                   sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=dso_boardgame -Dsonar.projectKey=dso_boardgame\
+                   sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=dso_boardgame\
+                          -Dsonar.projectKey=dso_boardgame\
                           -Dsonar.java.binaries=. '''
                 }
             }
         }
 
+	# This stage checks if the project passes the SonarQube quality gate.
 	stage('Quality Gate') {
 	    steps { 
 		    script {
@@ -58,13 +75,15 @@ pipeline {
 		    }
 	    }
 	}
-        
+
+	# This stage packages the Maven project.
         stage('Build') {
             steps {
                 sh 'mvn package'
             }
         }
-    
+
+	# This stage builds a Docker image and tags it as the latest version.
         stage('Build & tag Docker Image') {
             steps {
                 script {
@@ -75,6 +94,14 @@ pipeline {
             }
         }
 
+	# This stage scans the Docker image for vulnerabilities using Trivy
+        stage('Docker Image Scan') {
+            steps {
+                sh "trivy image --format table -o fs-report.html linksrobot/boardgame:latest"
+            }
+        }
+
+	# This stage pushes the Docker image to the registry.
         stage('Push Docker Image') {
             steps {
                 script {
@@ -84,7 +111,8 @@ pipeline {
                 }
             }
         }
-        
+
+	# This stage deploys to Kubernetes
         stage('Deply to Kubernetes') {
             steps {
                 withKubeConfig(caCertificate: '', clusterName: 'kubernetes', contextName: '', credentialsId: 'k8-cred', namespace: 'webapps', restrictKubeConfigAccess: false, serverUrl: 'https://172.31.83.64:6443') {
@@ -92,7 +120,8 @@ pipeline {
                 }
             }
         }
-        
+
+	# this stage checks deployment of the application to kubernetes cluster
         stage('Verify K8 deployment') {
             steps {
                 withKubeConfig(caCertificate: '', clusterName: 'kubernetes', contextName: '', credentialsId: 'k8-cred', namespace: 'webapps', restrictKubeConfigAccess: false, serverUrl: 'https://172.31.83.64:6443') {
@@ -101,7 +130,8 @@ pipeline {
                 }
             }
         }
-        
+
+	# This stage prine Pipeline Passed when completed
         stage('Pipeline Passed') {
             steps {
                 echo 'Pipeline Passed'
