@@ -23,6 +23,7 @@ This CRUD web application displays lists of board games and their reviews. While
 
 ## Tools and Dependencies
 - An AWS EC2 VM running a Jenkins server with Trivy, Maven, Docker, Kubectl and Prometheus Node Exporter installed
+- An AWS EC2 instance for the Runner server with Docker, Trivy, Maven, and Gitguardian installed
 - An AWS EC2 VM running the Official Sonarqube container
 - An AWS EC2 VM running the Official Nexus container
 - An AWS EC2 VM running a Prometheus server with Grafana and Blackbox installed
