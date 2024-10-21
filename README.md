@@ -1,53 +1,33 @@
-# Portfolio BoardgameListingWebApp Project
+# Portfolio DSO_Boardgame Project
+This is my 1st Jenkins and Github Actions pipeline I configured. I followed the YouTube video https://www.youtube.com/watch?v=NnkUGzaqqOc&t=1794s by DEVOPS Shack and forked https://github.com/jaiswaladi246/Boardgame as a base project. I added and will continue to add more security stages and jobs as I gain more knowledge on DevSecOps best practices and tools. 
 
 ## Description
 
 **Board Game Database Full-Stack Web Application.**
-This web application displays lists of board games and their reviews. While anyone can view the board game lists and reviews, they are required to log in to add/ edit the board games and their reviews. The 'users' have the authority to add board games to the list and add reviews, and the 'managers' have the authority to edit/ delete the reviews on top of the authorities of users.  
+This CRUD web application displays lists of board games and their reviews. While anyone can view the board game lists and reviews, they are required to log in to add/ edit the board games and their reviews. The 'users' have the authority to add board games to the list and add reviews, and the 'managers' have the authority to edit/ delete the reviews on top of the authorities of users.  
 
-## Technologies
 
-- Java
-- Spring Boot
-- Amazon Web Services(AWS) EC2
-- Thymeleaf
-- Thymeleaf Fragments
-- HTML5
-- CSS
-- JavaScript
-- Spring MVC
-- JDBC
-- H2 Database Engine (In-memory)
-- JUnit test framework
-- Spring Security
-- Twitter Bootstrap
-- Maven
+## Pipeline Overview and Workflow
+- The CI pipeline is triggered on every push. It consists of the following major stages:
+- Checkout Code: Pull the latest version of the repository.
+- A install and use Bandit a Python security analyzer that looks for common security issues.
+- Trivy is used to scan the file system for vulnerabilities in the code.
+- Use SonarQube server: A tool to detect bugs, vulnerabilities, and code smells.
+- OWASP Dependency-Check: Scans project dependencies to identify known vulnerabilities.
+- TruffleHog: Scans the repository for sensitive information such as hardcoded secrets.
+- GitGuardian: Scans for any potential secret leaks in the repository.
+- After SAST Scan passes, the Docker image is built and scanned for vulnerabilities before being pushed to Docker Hub.
+- Trivy Image Scan again: Scans the Docker image for vulnerabilities before pushing it.
+- Push Docker Image to Docker Hub: Logs into Docker Hub and pushes the Docker image.
+- Finally, the pipeline deploys the application to a Kubernetes cluster using kubectl.
 
-## Features
+## Tools and Dependencies
+- An AWS EC2 VM running a Jenkins server with Trivy, Maven, Docker, Kubectl and Prometheus Node Exporter installed
+- An AWS EC2 VM running the Official Sonarqube container
+- An AWS EC2 VM running the Official Nexus container
+- An AWS EC2 VM running a Prometheus server with Grafana and Blackbox installed
+- An AWS EC2 VM running a Kubernetes Controller node
+- An AWS EC2 VMs running Kubernetes Worker nodes
 
-- Full-Stack Application
-- UI components created with Thymeleaf and styled with Twitter Bootstrap
-- Authentication and authorization using Spring Security
-  - Authentication by allowing the users to authenticate with a username and password
-  - Authorization by granting different permissions based on the roles (non-members, users, and managers)
-- Different roles (non-members, users, and managers) with varying levels of permissions
-  - Non-members only can see the boardgame lists and reviews
-  - Users can add board games and write reviews
-  - Managers can edit and delete the reviews
-- Deployed the application on AWS EC2
-- JUnit test framework for unit testing
-- Spring MVC best practices to segregate views, controllers, and database packages
-- JDBC for database connectivity and interaction
-- CRUD (Create, Read, Update, Delete) operations for managing data in the database
-- Schema.sql file to customize the schema and input initial data
-- Thymeleaf Fragments to reduce redundancy of repeating HTML elements (head, footer, navigation)
+ ** for detailed steps in setup, refer to my CICD pipeline repository: https://github.com/jimjrxieb/Terraform_CICD_Setup
 
-## How to Run
-
-1. Clone the repository
-2. Open the project in your IDE of choice
-3. Run the application
-4. To use initial user data, use the following credentials.
-  - username: bugs    |     password: bunny (user role)
-  - username: daffy   |     password: duck  (manager role)
-5. You can also sign-up as a new user and customize your role to play with the application! 😊
