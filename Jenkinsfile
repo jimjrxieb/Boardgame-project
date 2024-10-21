@@ -43,7 +43,7 @@ pipeline {
             }
         }
 
-	stage('ggshield Scan') {
+	stage('GitGuardian-Shield Scan') {
             steps {
                 sh "ggshield scan repo . --api-key=${env.GG_API_KEY}"
             }
