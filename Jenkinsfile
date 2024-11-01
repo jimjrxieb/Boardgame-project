@@ -19,11 +19,19 @@ pipeline {
                 sh 'mvn compile'
             }
         }
-        stage('Black Duck Scan') {
+
+        stage('OWASP SCAN') {
             steps {
-                sh 'blackduck scan --detect.blackduck.api.token=YOUR_BLACKDUCK_API_TOKEN --detect.project.name=dso_boardgame'
+                dependencyCheck additionalArguments: '', odcInstallation: 'DP-check'
+                dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
             }
         }
+        
+      # stage('Black Duck Scan') {
+     #       steps {
+      #          sh 'blackduck scan --detect.blackduck.api.token=YOUR_BLACKDUCK_API_TOKEN --detect.project.name=dso_boardgame'
+       #     }
+       # }
         stage('Snyk Scan') {
             steps {
                 sh 'snyk test --org=YOUR_SNYK_ORG --project-name=dso_boardgame'
