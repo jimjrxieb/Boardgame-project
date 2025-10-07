@@ -290,11 +290,25 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Needed for dependency comparison
 
-      - name: Run GitHub Dependency Scan
+      - name: Run GitHub Dependency Scan (PR only)
+        if: github.event_name == 'pull_request'
         uses: actions/dependency-review-action@v3
         with:
           fail-on-severity: high
+
+      - name: Run Trivy Dependency Scan (Push/Schedule)
+        if: github.event_name != 'pull_request'
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          format: 'json'
+          output: 'trivy-dependency-report.json'
+          severity: 'HIGH,CRITICAL'
+          exit-code: '0'
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -336,6 +350,7 @@ jobs:
         with:
           name: dependency-scan-results
           path: |
+            trivy-dependency-report.json
             safety-report.json
             npm-audit-report.json
             snyk-report.json
