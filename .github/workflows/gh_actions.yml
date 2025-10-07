@@ -39,7 +39,6 @@ jobs:
 
     # Run SonarQube Scan (optional - requires SONAR_TOKEN and SONAR_HOST_URL secrets)
     - name: SonarQube Scan
-      if: ${{ secrets.SONAR_HOST_URL != '' }}
       continue-on-error: true
       uses: sonarsource/sonarqube-scan-action@master
       env:
@@ -73,7 +72,6 @@ jobs:
 
     # GitGuardian Secrets Scan (optional - requires GITGUARDIAN_API_KEY secret)
     - name: GitGuardian Secrets Scan
-      if: ${{ secrets.GITGUARDIAN_API_KEY != '' }}
       continue-on-error: true
       uses: GitGuardian/ggshield-action@v1
       with:
