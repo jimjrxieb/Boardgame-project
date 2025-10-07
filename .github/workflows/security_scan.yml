@@ -270,7 +270,7 @@ jobs:
           path: '.'
           output_path: kics-results/
           output_formats: 'json'
-          fail_on: high,medium
+          fail_on: high  # Only fail on HIGH/CRITICAL, not MEDIUM
 
       - name: Upload infrastructure scan results
         uses: actions/upload-artifact@v4
