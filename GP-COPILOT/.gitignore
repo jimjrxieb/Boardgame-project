@@ -1,0 +1,4 @@
+# GP-Copilot - Exclude sensitive scanner data
+scans/latest/raw/
+*.log
+*.tmp

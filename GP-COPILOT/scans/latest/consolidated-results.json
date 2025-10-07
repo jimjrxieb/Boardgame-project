@@ -1,0 +1,549 @@
+{
+  "scan_id": "18302300830",
+  "timestamp": "2025-10-07T00:52:28.023513",
+  "repository": "jimjrxieb/CLOUD-project",
+  "commit": "972822631e61cdca42da55c967dbfd5fc762b841",
+  "branch": "main",
+  "summary": {
+    "critical": 0,
+    "high": 0,
+    "medium": 18,
+    "low": 1
+  },
+  "risk_score": 37,
+  "findings_by_severity": {
+    "critical": [],
+    "high": [],
+    "medium": [
+      {
+        "scanner": "kics",
+        "severity": "medium",
+        "title": "Image Version Not Explicit",
+        "file": "Dockerfile",
+        "line": 1,
+        "description": "Always tag the version of an image explicitly",
+        "category": "Supply-Chain",
+        "platform": "Dockerfile",
+        "raw": {
+          "file_name": "Dockerfile",
+          "similarity_id": "2c560b2e0c552971a2558d7833e38bb60fee8125d74e4c27122984f06ea3e464",
+          "line": 1,
+          "issue_type": "MissingAttribute",
+          "search_key": "FROM={{adoptopenjdk/openjdk11}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "FROM adoptopenjdk/openjdk11:'version'",
+          "actual_value": "FROM adoptopenjdk/openjdk11'"
+        },
+        "tags": [
+          "file-type:dockerfile",
+          "category:supply-chain",
+          "platform:docker",
+          "priority:medium",
+          "scanner:kics"
+        ]
+      },
+      {
+        "scanner": "kics",
+        "severity": "medium",
+        "title": "Unpinned Actions Full Length Commit SHA",
+        "file": ".github/workflows/security_scan.yml",
+        "line": 247,
+        "description": "Pinning an action to a full length commit SHA is currently the only way to use an action as an immutable release. Pinning to a particular SHA helps mitigate the risk of a bad actor adding a backdoor to the action's repository, as they would need to generate a SHA-1 collision for a valid Git object payload. When selecting a SHA, you should verify it is from the action's repository and not a repository fork.",
+        "category": "Supply-Chain",
+        "platform": "CICD",
+        "raw": {
+          "file_name": ".github/workflows/security_scan.yml",
+          "similarity_id": "091e8178270b2b6b970d12dc9df8467ed4331d8c57ac042857f7b98f5f49f0be",
+          "line": 247,
+          "issue_type": "IncorrectValue",
+          "search_key": "uses={{bridgecrewio/checkov-action@master}}",
+          "search_line": 247,
+          "search_value": "",
+          "expected_value": "Action pinned to a full length commit SHA.",
+          "actual_value": "Action is not pinned to a full length commit SHA."
+        },
+        "tags": [
+          "scanner:kics",
+          "priority:medium",
+          "file-type:kubernetes",
+          "category:supply-chain"
+        ]
+      },
+      {
+        "scanner": "kics",
+        "severity": "medium",
+        "title": "Unpinned Actions Full Length Commit SHA",
+        "file": ".github/workflows/security_scan.yml",
+        "line": 34,
+        "description": "Pinning an action to a full length commit SHA is currently the only way to use an action as an immutable release. Pinning to a particular SHA helps mitigate the risk of a bad actor adding a backdoor to the action's repository, as they would need to generate a SHA-1 collision for a valid Git object payload. When selecting a SHA, you should verify it is from the action's repository and not a repository fork.",
+        "category": "Supply-Chain",
+        "platform": "CICD",
+        "raw": {
+          "file_name": ".github/workflows/security_scan.yml",
+          "similarity_id": "b19f53e78064362d78039694ed9f52a182276caee5651ffc4dc996150925a82d",
+          "line": 34,
+          "issue_type": "IncorrectValue",
+          "search_key": "uses={{dorny/paths-filter@v2}}",
+          "search_line": 34,
+          "search_value": "",
+          "expected_value": "Action pinned to a full length commit SHA.",
+          "actual_value": "Action is not pinned to a full length commit SHA."
+        },
+        "tags": [
+          "scanner:kics",
+          "priority:medium",
+          "file-type:kubernetes",
+          "category:supply-chain"
+        ]
+      },
+      {
+        "scanner": "kics",
+        "severity": "medium",
+        "title": "Unpinned Actions Full Length Commit SHA",
+        "file": ".github/workflows/security_scan.yml",
+        "line": 337,
+        "description": "Pinning an action to a full length commit SHA is currently the only way to use an action as an immutable release. Pinning to a particular SHA helps mitigate the risk of a bad actor adding a backdoor to the action's repository, as they would need to generate a SHA-1 collision for a valid Git object payload. When selecting a SHA, you should verify it is from the action's repository and not a repository fork.",
+        "category": "Supply-Chain",
+        "platform": "CICD",
+        "raw": {
+          "file_name": ".github/workflows/security_scan.yml",
+          "similarity_id": "adba2574bef1c1341c72f0f86b2932a834a138daa70f96a1fbaa75dfd53f23cb",
+          "line": 337,
+          "issue_type": "IncorrectValue",
+          "search_key": "uses={{snyk/actions/setup@master}}",
+          "search_line": 337,
+          "search_value": "",
+          "expected_value": "Action pinned to a full length commit SHA.",
+          "actual_value": "Action is not pinned to a full length commit SHA."
+        },
+        "tags": [
+          "scanner:kics",
+          "priority:medium",
+          "file-type:kubernetes",
+          "category:supply-chain"
+        ]
+      },
+      {
+        "scanner": "kics",
+        "severity": "medium",
+        "title": "Unpinned Actions Full Length Commit SHA",
+        "file": ".github/workflows/gh_actions.yml",
+        "line": 109,
+        "description": "Pinning an action to a full length commit SHA is currently the only way to use an action as an immutable release. Pinning to a particular SHA helps mitigate the risk of a bad actor adding a backdoor to the action's repository, as they would need to generate a SHA-1 collision for a valid Git object payload. When selecting a SHA, you should verify it is from the action's repository and not a repository fork.",
+        "category": "Supply-Chain",
+        "platform": "CICD",
+        "raw": {
+          "file_name": ".github/workflows/gh_actions.yml",
+          "similarity_id": "9908c9675e354710af61bdf9e1a97da552957c1658302ba3477314522c131cc1",
+          "line": 109,
+          "issue_type": "IncorrectValue",
+          "search_key": "uses={{docker/login-action@v3}}",
+          "search_line": 109,
+          "search_value": "",
+          "expected_value": "Action pinned to a full length commit SHA.",
+          "actual_value": "Action is not pinned to a full length commit SHA."
+        },
+        "tags": [
+          "scanner:kics",
+          "priority:medium",
+          "file-type:kubernetes",
+          "category:supply-chain"
+        ]
+      },
+      {
+        "scanner": "kics",
+        "severity": "medium",
+        "title": "Unpinned Actions Full Length Commit SHA",
+        "file": ".github/workflows/gh_actions.yml",
+        "line": 84,
+        "description": "Pinning an action to a full length commit SHA is currently the only way to use an action as an immutable release. Pinning to a particular SHA helps mitigate the risk of a bad actor adding a backdoor to the action's repository, as they would need to generate a SHA-1 collision for a valid Git object payload. When selecting a SHA, you should verify it is from the action's repository and not a repository fork.",
+        "category": "Supply-Chain",
+        "platform": "CICD",
+        "raw": {
+          "file_name": ".github/workflows/gh_actions.yml",
+          "similarity_id": "953d4fd9ef53149dae22ed16d7000d5cc1dfddf05f356d537bdb53ac359ee5bc",
+          "line": 84,
+          "issue_type": "IncorrectValue",
+          "search_key": "uses={{docker/setup-qemu-action@v3}}",
+          "search_line": 84,
+          "search_value": "",
+          "expected_value": "Action pinned to a full length commit SHA.",
+          "actual_value": "Action is not pinned to a full length commit SHA."
+        },
+        "tags": [
+          "scanner:kics",
+          "priority:medium",
+          "file-type:kubernetes",
+          "category:supply-chain"
+        ]
+      },
+      {
+        "scanner": "kics",
+        "severity": "medium",
+        "title": "Unpinned Actions Full Length Commit SHA",
+        "file": ".github/workflows/security_scan.yml",
+        "line": 304,
+        "description": "Pinning an action to a full length commit SHA is currently the only way to use an action as an immutable release. Pinning to a particular SHA helps mitigate the risk of a bad actor adding a backdoor to the action's repository, as they would need to generate a SHA-1 collision for a valid Git object payload. When selecting a SHA, you should verify it is from the action's repository and not a repository fork.",
+        "category": "Supply-Chain",
+        "platform": "CICD",
+        "raw": {
+          "file_name": ".github/workflows/security_scan.yml",
+          "similarity_id": "ff083c3f8d44e21fb1f7cf7514252e65c74b82954c055b726b115336cd7d9806",
+          "line": 304,
+          "issue_type": "IncorrectValue",
+          "search_key": "uses={{aquasecurity/trivy-action@master}}",
+          "search_line": 304,
+          "search_value": "",
+          "expected_value": "Action pinned to a full length commit SHA.",
+          "actual_value": "Action is not pinned to a full length commit SHA."
+        },
+        "tags": [
+          "scanner:kics",
+          "priority:medium",
+          "file-type:kubernetes",
+          "category:supply-chain"
+        ]
+      },
+      {
+        "scanner": "kics",
+        "severity": "medium",
+        "title": "Unpinned Actions Full Length Commit SHA",
+        "file": ".github/workflows/security_scan.yml",
+        "line": 87,
+        "description": "Pinning an action to a full length commit SHA is currently the only way to use an action as an immutable release. Pinning to a particular SHA helps mitigate the risk of a bad actor adding a backdoor to the action's repository, as they would need to generate a SHA-1 collision for a valid Git object payload. When selecting a SHA, you should verify it is from the action's repository and not a repository fork.",
+        "category": "Supply-Chain",
+        "platform": "CICD",
+        "raw": {
+          "file_name": ".github/workflows/security_scan.yml",
+          "similarity_id": "613b67401fbbd652495fed7b6a9637e3ec3a2c8e4a28f3006ef224ff7347165b",
+          "line": 87,
+          "issue_type": "IncorrectValue",
+          "search_key": "uses={{gitleaks/gitleaks-action@v2}}",
+          "search_line": 87,
+          "search_value": "",
+          "expected_value": "Action pinned to a full length commit SHA.",
+          "actual_value": "Action is not pinned to a full length commit SHA."
+        },
+        "tags": [
+          "scanner:kics",
+          "priority:medium",
+          "file-type:kubernetes",
+          "category:supply-chain"
+        ]
+      },
+      {
+        "scanner": "kics",
+        "severity": "medium",
+        "title": "Unpinned Actions Full Length Commit SHA",
+        "file": ".github/workflows/security_scan.yml",
+        "line": 141,
+        "description": "Pinning an action to a full length commit SHA is currently the only way to use an action as an immutable release. Pinning to a particular SHA helps mitigate the risk of a bad actor adding a backdoor to the action's repository, as they would need to generate a SHA-1 collision for a valid Git object payload. When selecting a SHA, you should verify it is from the action's repository and not a repository fork.",
+        "category": "Supply-Chain",
+        "platform": "CICD",
+        "raw": {
+          "file_name": ".github/workflows/security_scan.yml",
+          "similarity_id": "a69b775577e324931efd79d088bfb46b4862e2e8b729c50f293ef99a162d7325",
+          "line": 141,
+          "issue_type": "IncorrectValue",
+          "search_key": "uses={{semgrep/semgrep-action@v1}}",
+          "search_line": 141,
+          "search_value": "",
+          "expected_value": "Action pinned to a full length commit SHA.",
+          "actual_value": "Action is not pinned to a full length commit SHA."
+        },
+        "tags": [
+          "scanner:kics",
+          "priority:medium",
+          "file-type:kubernetes",
+          "category:supply-chain"
+        ]
+      },
+      {
+        "scanner": "kics",
+        "severity": "medium",
+        "title": "Unpinned Actions Full Length Commit SHA",
+        "file": ".github/workflows/gh_actions.yml",
+        "line": 42,
+        "description": "Pinning an action to a full length commit SHA is currently the only way to use an action as an immutable release. Pinning to a particular SHA helps mitigate the risk of a bad actor adding a backdoor to the action's repository, as they would need to generate a SHA-1 collision for a valid Git object payload. When selecting a SHA, you should verify it is from the action's repository and not a repository fork.",
+        "category": "Supply-Chain",
+        "platform": "CICD",
+        "raw": {
+          "file_name": ".github/workflows/gh_actions.yml",
+          "similarity_id": "cc5598c390c5b1de3726f8646f229c841ba0c0f1e51a96a1f31a85061d7216ee",
+          "line": 42,
+          "issue_type": "IncorrectValue",
+          "search_key": "uses={{sonarsource/sonarqube-scan-action@master}}",
+          "search_line": 42,
+          "search_value": "",
+          "expected_value": "Action pinned to a full length commit SHA.",
+          "actual_value": "Action is not pinned to a full length commit SHA."
+        },
+        "tags": [
+          "scanner:kics",
+          "priority:medium",
+          "file-type:kubernetes",
+          "category:supply-chain"
+        ]
+      },
+      {
+        "scanner": "kics",
+        "severity": "medium",
+        "title": "Unpinned Actions Full Length Commit SHA",
+        "file": ".github/workflows/security_scan.yml",
+        "line": 192,
+        "description": "Pinning an action to a full length commit SHA is currently the only way to use an action as an immutable release. Pinning to a particular SHA helps mitigate the risk of a bad actor adding a backdoor to the action's repository, as they would need to generate a SHA-1 collision for a valid Git object payload. When selecting a SHA, you should verify it is from the action's repository and not a repository fork.",
+        "category": "Supply-Chain",
+        "platform": "CICD",
+        "raw": {
+          "file_name": ".github/workflows/security_scan.yml",
+          "similarity_id": "3df6296e51903a6a7d856c2d46fa18003df274261ea5eb6f6e9ef148eb5a6a78",
+          "line": 192,
+          "issue_type": "IncorrectValue",
+          "search_key": "uses={{docker/setup-buildx-action@v3}}",
+          "search_line": 192,
+          "search_value": "",
+          "expected_value": "Action pinned to a full length commit SHA.",
+          "actual_value": "Action is not pinned to a full length commit SHA."
+        },
+        "tags": [
+          "scanner:kics",
+          "priority:medium",
+          "file-type:kubernetes",
+          "category:supply-chain"
+        ]
+      },
+      {
+        "scanner": "kics",
+        "severity": "medium",
+        "title": "Unpinned Actions Full Length Commit SHA",
+        "file": ".github/workflows/gh_actions.yml",
+        "line": 121,
+        "description": "Pinning an action to a full length commit SHA is currently the only way to use an action as an immutable release. Pinning to a particular SHA helps mitigate the risk of a bad actor adding a backdoor to the action's repository, as they would need to generate a SHA-1 collision for a valid Git object payload. When selecting a SHA, you should verify it is from the action's repository and not a repository fork.",
+        "category": "Supply-Chain",
+        "platform": "CICD",
+        "raw": {
+          "file_name": ".github/workflows/gh_actions.yml",
+          "similarity_id": "69f7bc0db9e4d175d9a0885de2ac1a765d94c791797f34654f92d2f6550b42a9",
+          "line": 121,
+          "issue_type": "IncorrectValue",
+          "search_key": "uses={{tale/kubectl-action@v1}}",
+          "search_line": 121,
+          "search_value": "",
+          "expected_value": "Action pinned to a full length commit SHA.",
+          "actual_value": "Action is not pinned to a full length commit SHA."
+        },
+        "tags": [
+          "scanner:kics",
+          "priority:medium",
+          "file-type:kubernetes",
+          "category:supply-chain"
+        ]
+      },
+      {
+        "scanner": "kics",
+        "severity": "medium",
+        "title": "Unpinned Actions Full Length Commit SHA",
+        "file": ".github/workflows/gh_actions.yml",
+        "line": 49,
+        "description": "Pinning an action to a full length commit SHA is currently the only way to use an action as an immutable release. Pinning to a particular SHA helps mitigate the risk of a bad actor adding a backdoor to the action's repository, as they would need to generate a SHA-1 collision for a valid Git object payload. When selecting a SHA, you should verify it is from the action's repository and not a repository fork.",
+        "category": "Supply-Chain",
+        "platform": "CICD",
+        "raw": {
+          "file_name": ".github/workflows/gh_actions.yml",
+          "similarity_id": "3a30484855a2a822b56f4c032db75cc4d51305ffc938fe835374b97278ef4015",
+          "line": 49,
+          "issue_type": "IncorrectValue",
+          "search_key": "uses={{trufflesecurity/TruffleHog-Enterprise-Github-Action@main}}",
+          "search_line": 49,
+          "search_value": "",
+          "expected_value": "Action pinned to a full length commit SHA.",
+          "actual_value": "Action is not pinned to a full length commit SHA."
+        },
+        "tags": [
+          "scanner:kics",
+          "priority:medium",
+          "file-type:kubernetes",
+          "category:supply-chain"
+        ]
+      },
+      {
+        "scanner": "kics",
+        "severity": "medium",
+        "title": "Unpinned Actions Full Length Commit SHA",
+        "file": ".github/workflows/security_scan.yml",
+        "line": 256,
+        "description": "Pinning an action to a full length commit SHA is currently the only way to use an action as an immutable release. Pinning to a particular SHA helps mitigate the risk of a bad actor adding a backdoor to the action's repository, as they would need to generate a SHA-1 collision for a valid Git object payload. When selecting a SHA, you should verify it is from the action's repository and not a repository fork.",
+        "category": "Supply-Chain",
+        "platform": "CICD",
+        "raw": {
+          "file_name": ".github/workflows/security_scan.yml",
+          "similarity_id": "3fced0472b6e036b3183c2c8aaefae8d2d25bda8825ea6fb013aee6de2c636ca",
+          "line": 256,
+          "issue_type": "IncorrectValue",
+          "search_key": "uses={{aquasecurity/tfsec-action@v1.0.3}}",
+          "search_line": 256,
+          "search_value": "",
+          "expected_value": "Action pinned to a full length commit SHA.",
+          "actual_value": "Action is not pinned to a full length commit SHA."
+        },
+        "tags": [
+          "scanner:kics",
+          "priority:medium",
+          "file-type:kubernetes",
+          "category:supply-chain"
+        ]
+      },
+      {
+        "scanner": "kics",
+        "severity": "medium",
+        "title": "Unpinned Actions Full Length Commit SHA",
+        "file": ".github/workflows/security_scan.yml",
+        "line": 268,
+        "description": "Pinning an action to a full length commit SHA is currently the only way to use an action as an immutable release. Pinning to a particular SHA helps mitigate the risk of a bad actor adding a backdoor to the action's repository, as they would need to generate a SHA-1 collision for a valid Git object payload. When selecting a SHA, you should verify it is from the action's repository and not a repository fork.",
+        "category": "Supply-Chain",
+        "platform": "CICD",
+        "raw": {
+          "file_name": ".github/workflows/security_scan.yml",
+          "similarity_id": "967e2805ecb7b87d9f8678ad06039a51ce64d5a42d3fdfc81b8c3955cf7b0fdd",
+          "line": 268,
+          "issue_type": "IncorrectValue",
+          "search_key": "uses={{checkmarx/kics-github-action@v1.7.0}}",
+          "search_line": 268,
+          "search_value": "",
+          "expected_value": "Action pinned to a full length commit SHA.",
+          "actual_value": "Action is not pinned to a full length commit SHA."
+        },
+        "tags": [
+          "scanner:kics",
+          "priority:medium",
+          "file-type:kubernetes",
+          "category:supply-chain"
+        ]
+      },
+      {
+        "scanner": "kics",
+        "severity": "medium",
+        "title": "Unpinned Actions Full Length Commit SHA",
+        "file": ".github/workflows/security_scan.yml",
+        "line": 79,
+        "description": "Pinning an action to a full length commit SHA is currently the only way to use an action as an immutable release. Pinning to a particular SHA helps mitigate the risk of a bad actor adding a backdoor to the action's repository, as they would need to generate a SHA-1 collision for a valid Git object payload. When selecting a SHA, you should verify it is from the action's repository and not a repository fork.",
+        "category": "Supply-Chain",
+        "platform": "CICD",
+        "raw": {
+          "file_name": ".github/workflows/security_scan.yml",
+          "similarity_id": "9f1a581835b0a7ee396b394aa4dbca252c755eaeacf9206e359d162a1d06d29c",
+          "line": 79,
+          "issue_type": "IncorrectValue",
+          "search_key": "uses={{trufflesecurity/trufflehog@main}}",
+          "search_line": 79,
+          "search_value": "",
+          "expected_value": "Action pinned to a full length commit SHA.",
+          "actual_value": "Action is not pinned to a full length commit SHA."
+        },
+        "tags": [
+          "scanner:kics",
+          "priority:medium",
+          "file-type:kubernetes",
+          "category:supply-chain"
+        ]
+      },
+      {
+        "scanner": "kics",
+        "severity": "medium",
+        "title": "Unpinned Actions Full Length Commit SHA",
+        "file": ".github/workflows/gh_actions.yml",
+        "line": 73,
+        "description": "Pinning an action to a full length commit SHA is currently the only way to use an action as an immutable release. Pinning to a particular SHA helps mitigate the risk of a bad actor adding a backdoor to the action's repository, as they would need to generate a SHA-1 collision for a valid Git object payload. When selecting a SHA, you should verify it is from the action's repository and not a repository fork.",
+        "category": "Supply-Chain",
+        "platform": "CICD",
+        "raw": {
+          "file_name": ".github/workflows/gh_actions.yml",
+          "similarity_id": "c362df30c857bb27f1543b59c1220308094950cb2ea3d002b89f4461fbe1146a",
+          "line": 73,
+          "issue_type": "IncorrectValue",
+          "search_key": "uses={{GitGuardian/ggshield-action@v1}}",
+          "search_line": 73,
+          "search_value": "",
+          "expected_value": "Action pinned to a full length commit SHA.",
+          "actual_value": "Action is not pinned to a full length commit SHA."
+        },
+        "tags": [
+          "scanner:kics",
+          "priority:medium",
+          "file-type:kubernetes",
+          "category:supply-chain"
+        ]
+      },
+      {
+        "scanner": "kics",
+        "severity": "medium",
+        "title": "Unpinned Actions Full Length Commit SHA",
+        "file": ".github/workflows/gh_actions.yml",
+        "line": 88,
+        "description": "Pinning an action to a full length commit SHA is currently the only way to use an action as an immutable release. Pinning to a particular SHA helps mitigate the risk of a bad actor adding a backdoor to the action's repository, as they would need to generate a SHA-1 collision for a valid Git object payload. When selecting a SHA, you should verify it is from the action's repository and not a repository fork.",
+        "category": "Supply-Chain",
+        "platform": "CICD",
+        "raw": {
+          "file_name": ".github/workflows/gh_actions.yml",
+          "similarity_id": "d8f7c4f034e81ea0226ef6fe12b4161be982398b658d6760783eb985efe518c2",
+          "line": 88,
+          "issue_type": "IncorrectValue",
+          "search_key": "uses={{docker/setup-buildx-action@v3}}",
+          "search_line": 88,
+          "search_value": "",
+          "expected_value": "Action pinned to a full length commit SHA.",
+          "actual_value": "Action is not pinned to a full length commit SHA."
+        },
+        "tags": [
+          "scanner:kics",
+          "priority:medium",
+          "file-type:kubernetes",
+          "category:supply-chain"
+        ]
+      }
+    ],
+    "low": [
+      {
+        "scanner": "kics",
+        "severity": "low",
+        "title": "Healthcheck Instruction Missing",
+        "file": "Dockerfile",
+        "line": 1,
+        "description": "Ensure that HEALTHCHECK is being used. The HEALTHCHECK instruction tells Docker how to test a container to check that it is still working",
+        "category": "Insecure Configurations",
+        "platform": "Dockerfile",
+        "raw": {
+          "file_name": "Dockerfile",
+          "similarity_id": "aec36980f989f6db4b30d602c0d65ba807b3a1f3e1f3e05b5c3c27ba3bcc4874",
+          "line": 1,
+          "issue_type": "MissingAttribute",
+          "search_key": "FROM={{adoptopenjdk/openjdk11}}",
+          "search_line": -1,
+          "search_value": "",
+          "expected_value": "Dockerfile should contain instruction 'HEALTHCHECK'",
+          "actual_value": "Dockerfile doesn't contain instruction 'HEALTHCHECK'"
+        },
+        "tags": [
+          "file-type:dockerfile",
+          "platform:docker",
+          "scanner:kics",
+          "category:insecure-configurations",
+          "priority:low"
+        ]
+      }
+    ]
+  },
+  "scanners_used": [
+    "unknown",
+    "kics"
+  ],
+  "discrepancy": {
+    "detected": true,
+    "missed_findings": 19,
+    "actual_high": 0,
+    "gate_high": 0,
+    "actual_critical": 0,
+    "gate_critical": 0
+  }
+}
