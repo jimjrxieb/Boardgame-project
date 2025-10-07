@@ -1,5 +1,18 @@
 # 🎲 Board Game Review Platform - Cloud-Native DevSecOps Demo
 
+[![CI/CD Pipeline](https://github.com/jimjrxieb/CLOUD-project/actions/workflows/gh_actions.yml/badge.svg)](https://github.com/jimjrxieb/CLOUD-project/actions/workflows/gh_actions.yml)
+[![Security Scan](https://github.com/jimjrxieb/CLOUD-project/actions/workflows/security_scan.yml/badge.svg)](https://github.com/jimjrxieb/CLOUD-project/actions/workflows/security_scan.yml)
+[![Security: 0 CRITICAL CVEs](https://img.shields.io/badge/security-0%20CRITICAL%20CVEs-success)](./SECURITY_ACHIEVEMENT.md)
+
+## 📚 Documentation Quick Links
+
+📄 **[Pipeline Success](./PIPELINE_SUCCESS.md)** - CI/CD setup and workflow status
+🛡️ **[Security Achievement](./SECURITY_ACHIEVEMENT.md)** - CVE remediation journey (10 → 0 CRITICAL)
+🔒 **[Security Scanning](./SECURITY_SCANNING.md)** - Security tools configuration guide
+🏗️ **[Terraform Guide](./terraform/README.md)** - AWS infrastructure deployment
+
+---
+
 ## 📋 SKILLS CHECKLIST - What This Project Demonstrates
 
 ### **Key Responsibilities Covered:**
@@ -36,10 +49,11 @@ Enterprise-grade **Spring Boot application** demonstrating cloud infrastructure,
 ## 🛠️ Technology Stack & Skills Demonstrated
 
 ### **Backend Development**
-- ☕ **Java 11** - Spring Boot 2.5.6, Spring Security, Spring Data JPA
-- 🗄️ **Database** - H2 in-memory, JDBC, JPA/Hibernate
-- 🔒 **Security** - Role-based access control (RBAC), authentication, authorization
-- 🧪 **Testing** - JUnit, Spring Security Test, JaCoCo code coverage
+- ☕ **Java 17 (LTS)** - Spring Boot 3.2.11, Spring Security 6, Spring Data JPA
+- 🗄️ **Database** - H2 in-memory (dev), PostgreSQL (AWS RDS prod)
+- 🔒 **Security** - Role-based access control (RBAC), BCrypt password encoding, Jakarta EE 9+
+- 🧪 **Testing** - JUnit 5, Spring Security Test, JaCoCo code coverage
+- 🛡️ **Security Posture** - **0 CRITICAL CVEs** (verified by Trivy)
 
 ### **Cloud & Infrastructure (IaC)**
 - 🐳 **Docker** - Multi-stage builds, security hardening (non-root user, dropped capabilities)
