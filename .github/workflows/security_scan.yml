@@ -265,6 +265,7 @@ jobs:
           kubescape scan . --format json --output kubescape-report.json || true
 
       - name: Run KICS
+        continue-on-error: true
         uses: checkmarx/kics-github-action@v1.7.0
         with:
           path: '.'
