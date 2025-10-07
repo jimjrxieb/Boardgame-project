@@ -52,14 +52,16 @@ jobs:
       with:
         args: --fail-verified ${{ github.event.repository.default_branch }} HEAD
 
-    # OWASP Dependency-Check
+    # OWASP Dependency-Check (optional - Trivy provides similar coverage)
     - name: Install OWASP Dependency-Check
+      continue-on-error: true
       run: |
         curl -LO https://github.com/jeremylong/DependencyCheck/releases/download/v6.5.3/dependency-check-6.5.3-release.zip
         unzip dependency-check-6.5.3-release.zip -d /usr/local/bin/
         chmod +x /usr/local/bin/dependency-check/bin/dependency-check.sh
 
     - name: Run OWASP Dependency-Check
+      continue-on-error: true
       run: |
         /usr/local/bin/dependency-check/bin/dependency-check.sh --format JSON --out dependency-check-report.json --scan .
 
@@ -69,6 +71,7 @@ jobs:
       with:
         name: owasp-dependency-check-findings
         path: dependency-check-report.json
+        if-no-files-found: ignore
 
     # GitGuardian Secrets Scan (optional - requires GITGUARDIAN_API_KEY secret)
     - name: GitGuardian Secrets Scan
