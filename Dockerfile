@@ -9,7 +9,7 @@ WORKDIR /app
 RUN chown -R appuser:appuser /app
 
 # Copy JAR file
-COPY --chown=appuser:appuser target/database_service_project-0.0.4.jar app.jar
+COPY --chown=appuser:appuser target/database_service_project-0.0.5.jar app.jar
 
 # Switch to non-root user
 USER appuser
