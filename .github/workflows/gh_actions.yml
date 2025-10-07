@@ -80,8 +80,12 @@ jobs:
       with:
         api-key: ${{ secrets.GITGUARDIAN_API_KEY }}
 
+  # Docker build, scan, push, and deploy job
+  # Disabled for portfolio demo - set if: true when Docker Hub and K8s are configured
+  # Requires: DOCKER_USER, DOCKER_CRED, KUBE_CONFIG secrets
   docker_build:
-    name: Build and Push Docker Image
+    name: Build and Push Docker Image (Disabled)
+    if: false
     runs-on: ubuntu-latest
     needs: build
     steps:
