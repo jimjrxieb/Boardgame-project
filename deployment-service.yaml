@@ -18,7 +18,18 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 8080 # The port that the container is running on in the cluster
+                    # Security hardening
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            runAsUser: 1001
+            runAsGroup: 1001
+            capabilities:
+              drop:
+                - ALL
+            readOnlyRootFilesystem: false  # Set to true if app doesn't need write access
 
+Commit and Push
 
 ---
 
