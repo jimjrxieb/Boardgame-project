@@ -1,0 +1,43 @@
+# Terraform Variables - Copy to terraform.tfvars and fill in values
+
+# AWS Configuration
+aws_region = "us-east-1"
+
+# Project Configuration
+project_name = "boardgame"
+environment  = "production"
+owner_email  = "your.email@example.com"  # REQUIRED: For cost alerts
+
+# VPC Configuration
+vpc_cidr           = "10.0.0.0/16"
+availability_zones = ["us-east-1a", "us-east-1b", "us-east-1c"]
+
+# EKS Configuration
+eks_cluster_version = "1.28"
+
+eks_node_groups = {
+  general = {
+    desired_size   = 2
+    min_size       = 1
+    max_size       = 4
+    instance_types = ["t3.small"]
+    capacity_type  = "ON_DEMAND"
+  }
+}
+
+# RDS Configuration
+rds_engine_version          = "15.4"
+rds_instance_class          = "db.t3.micro"   # Free tier eligible
+rds_allocated_storage       = 20
+rds_backup_retention_period = 7
+
+database_name     = "boardgame"
+database_username = "admin"
+
+# Monitoring
+enable_container_insights = true
+enable_prometheus         = true
+enable_grafana           = true
+
+# Cost Management
+monthly_budget_limit = 150  # USD - Adjust based on your budget
