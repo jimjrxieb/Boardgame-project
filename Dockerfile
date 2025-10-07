@@ -1,4 +1,4 @@
-FROM adoptopenjdk/openjdk11
+FROM eclipse-temurin:17-jre-alpine
 
 # Create non-root user
 RUN addgroup -g 1001 appuser && \
@@ -9,7 +9,7 @@ WORKDIR /app
 RUN chown -R appuser:appuser /app
 
 # Copy JAR file
-COPY --chown=appuser:appuser target/database_service_project-0.0.5.jar app.jar
+COPY --chown=appuser:appuser target/database_service_project-0.0.6.jar app.jar
 
 # Switch to non-root user
 USER appuser
