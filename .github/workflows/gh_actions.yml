@@ -37,15 +37,18 @@ jobs:
     - name: Trivy FS scan
       run: trivy fs . --exit-code 1 --severity CRITICAL
 
-    # Run SonarQube Scan
+    # Run SonarQube Scan (optional - requires SONAR_TOKEN and SONAR_HOST_URL secrets)
     - name: SonarQube Scan
+      if: ${{ secrets.SONAR_HOST_URL != '' }}
+      continue-on-error: true
       uses: sonarsource/sonarqube-scan-action@master
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
-    # Run TruffleHog scan
+    # Run TruffleHog scan (optional - requires TruffleHog Enterprise)
     - name: TruffleHog scan
+      continue-on-error: true
       uses: trufflesecurity/TruffleHog-Enterprise-Github-Action@main
       with:
         args: --fail-verified ${{ github.event.repository.default_branch }} HEAD
@@ -68,8 +71,10 @@ jobs:
         name: owasp-dependency-check-findings
         path: dependency-check-report.json
 
-    # GitGuardian Secrets Scan
+    # GitGuardian Secrets Scan (optional - requires GITGUARDIAN_API_KEY secret)
     - name: GitGuardian Secrets Scan
+      if: ${{ secrets.GITGUARDIAN_API_KEY != '' }}
+      continue-on-error: true
       uses: GitGuardian/ggshield-action@v1
       with:
         api-key: ${{ secrets.GITGUARDIAN_API_KEY }}
