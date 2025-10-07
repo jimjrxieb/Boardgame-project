@@ -62,7 +62,7 @@ jobs:
         /usr/local/bin/dependency-check/bin/dependency-check.sh --format JSON --out dependency-check-report.json --scan .
 
     - name: Upload OWASP Dependency-Check Artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       if: always()
       with:
         name: owasp-dependency-check-findings
