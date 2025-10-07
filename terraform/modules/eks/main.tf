@@ -37,6 +37,7 @@ resource "aws_security_group" "cluster" {
   vpc_id      = var.vpc_id
 
   egress {
+    description = "Allow all outbound traffic from EKS cluster"
     from_port   = 0
     to_port     = 0
     protocol    = "-1"

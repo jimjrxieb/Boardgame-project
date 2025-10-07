@@ -52,6 +52,7 @@ resource "aws_security_group" "rds" {
   }
 
   egress {
+    description = "Allow all outbound traffic from RDS"
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
